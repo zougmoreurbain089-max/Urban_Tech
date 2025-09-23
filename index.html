@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenue chez CyberUrban_Tech</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<audio id="sonBienvenue" autoplay>
+  <source src="audio/bienvenue.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="sonClick">
+  <source src="audio/click.mp3" type="audio/mpeg">
+</audio>
+
+  <header class="site-header">
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="logo">
+        <img src=" images\logo\R.jpg   " alt="Logo du site">
+      </div>
+      <h1>CyberNova</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href ="vente.html"> vente</a></li>
+          <li><a href="pdg.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="pdg-presentation" id="pdg">
+    <h1>Bienvenue chez CyberUrban_Tech</h1>
+    <h2>La solution à tous vos problèmes digitaux et numériques</h2>
+    <p>Je vous accompagne dans la transformation digitale, la technologie du numérique et du multimedia.</p>
+    <a href="tel:+22657373016" class="btn-appel">📞 Appeler maintenant</a>
+  </section>
+
+  <section id="services">
+    <h2>Nos Services</h2>
+    <ul>
+      <li><strong>Maintenance & Réparation :</strong> Diagnostic, réparation et optimisation de vos équipements informatiques.</li>
+      <li><strong>Installation de Office et antivirus :</strong> Office 2024, Kaspersky, Total Security.</li>
+      <li><strong>Développement d'application :</strong> Logiciels de gestion et applications web sur mesure.</li>
+      <li><strong>Conception de site web :</strong> Sites dynamiques et statiques adaptés à vos besoins.</li>
+      <li><strong>Installation de systèmes d'exploitation</strong></li>
+      <li><strong>Conseil & Audit IT</strong></li>
+    </ul>
+  </section>
+
+  <section id="formations">
+    <h2>Nos Formations Professionnelles</h2>
+    <p>Formations adaptées à vos besoins :</p>
+    <ul>
+      <li><strong>Informatique de base</strong></li>
+      <li><strong>Intelligence artificielle</strong></li>
+      <li><strong>Bureautique avancée</strong></li>
+      <li><strong>MERISE</strong></li>
+      <li><strong>Programmation</strong></li>
+      <li><strong>Informatique avancée</strong></li>
+      <li><strong>Installation OS (Windows, Linux, Kali, Parrot)</strong></li>
+    </ul>
+    <a href="tel:+22664595809" class="btn-appel">📞 S’inscrire à une formation</a>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Besoin d’un devis, d’une formation ou d’un conseil ? Nous sommes à votre écoute.</p>
+    <ul>
+      <li><strong>Téléphone :</strong> <a href="tel:+22657373016">+226 57373016</a></li>
+      <li><strong>Email :</strong> zougmoreurbain089@gmail.com</li>
+      <li><strong>Adresse :</strong> Somgandé, Ouagadougou</li>
+    </ul>
+    <form>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom">
+
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email">
+
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" rows="5"></textarea>
+
+      <input type="submit" value="Envoyer">
+    </form>
+  </section>
+
+  <a href="https://wa.me/22657373016" target="_blank" class="btn-whatsapp">💬 Discuter sur WhatsApp</a>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+  // 1. Menu responsive
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
+
+  // 2. Scroll doux vers les sections
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // 3. Confirmation d’envoi du formulaire
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Merci pour votre message ! Nous vous répondrons bientôt.");
+    form.reset();
+  });
+
+  // 4. Animation au scroll
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  // 5. Message de bienvenue automatique
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      alert("Bienvenue chez CyberNova ! Explorez nos services et formations.");
+    }, 1000);
+  });
+  document.querySelectorAll('.btn-appel, .btn-whatsapp').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('sonClick').play();
+  });
+});
+
+document.querySelectorAll('.btn-appel, .btn-whatsapp').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    document.getElementById('sonClick').play();
+  });
+});
+
+</script>
+
+  
+</body>
+</html>

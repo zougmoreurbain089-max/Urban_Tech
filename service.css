@@ -1,0 +1,134 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAVIGATION */
+header {
+  background-color: #007BFF;
+  padding: 20px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* SECTION SERVICES */
+section#services {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+section#services h2 {
+  font-size: 2.8em;
+  color: #007BFF;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.service-box {
+  flex: 1 1 300px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-5px);
+}
+
+.service-box h3 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.service-box p {
+  font-size: 1.1em;
+  margin-bottom: 0;
+  color: #555;
+}
+
+lottie-player {
+  width: 100px;
+  height: 100px;
+}
+
+/* BOUTONS */
+.btn-appel {
+  display: inline-block;
+  margin: 20px;
+  padding: 14px 24px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-appel:hover {
+  background-color: #0056b3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  lottie-player {
+    margin-top: 15px;
+  }
+}

@@ -1,0 +1,207 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.site-header {
+  position: relative;
+  height: 200px; /* Réduction de la hauteur */
+  background: url(" Urban_Tech\images\logo\1682349040472.jpg ") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(3, 2, 44, 0.5).5).5);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  animation: fade-in 2s ease-out;
+}
+
+.logo img {
+  width: 100px; /* Taille réduite du logo */
+  border-radius: 50%;
+  animation: zoomIn 2s ease-out;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  margin-bottom: 10px;
+}
+
+.site-header h1 {
+  font-size: 2.2em; /* Taille réduite du titre */
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* NAVIGATION */
+nav {
+  margin-top: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color:  green;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.nav-links li a:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2em;
+  cursor: pointer;
+  color: white;
+  margin-top: 10px;
+}
+
+/* Responsive menu */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .site-header {
+    height: 200px;
+  }
+
+  .site-header h1 {
+    font-size: 1.8em;
+  }
+
+  .logo img {
+    width: 60px;
+  }
+}
+
+/* SECTIONS */
+section {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section h2 {
+  font-size: 2.4em;
+  color: #007BFF;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+section p, section li {
+  font-size: 1.1em;
+}
+
+/* FORM */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  background-color: #007BFF;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* BOUTONS */
+.btn-appel, .btn-whatsapp {
+  display: inline-block;
+  margin: 20px;
+  padding: 14px 24px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-appel:hover, .btn-whatsapp:hover {
+  background-color: #0056b3;
+}
+
+/* ANIMATIONS */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

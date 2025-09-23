@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contactez-nous — Urban_Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="formation.html">Formations</a></li>
+        <li><a href="vente.html">Vente</a></li>
+        <li><a href="pdg.html">À propos de Urban_Tech</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <h1 class="site-title">Urban_Tech</h1>
+      <p class="site-subtitle">Nous sommes à votre écoute</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-section container">
+      <h2>Contactez-nous</h2>
+      <p class="intro">
+        Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.
+      </p>
+
+    
+      <form
+        class="contact-form"
+        action="mailto:contact@monentreprise.com"
+        method="post"
+        enctype="text/plain"
+      >
+        <div class="form-row">
+          <label for="name">Nom complet</label>
+          <input type="text" id="name" name="Nom" placeholder="ZOUGMORE" required>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" placeholder="zougmoreurbain089@gmail.com" required>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Téléphone</label>
+          <input type="tel" id="phone" name="Téléphone" placeholder="+226 57 37 30 16">
+        </div>
+
+        <div class="form-row">
+          <label for="subject">Sujet</label>
+          <input type="text" id="subject" name="Sujet" placeholder="Objet de votre demande" required>
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="Message" rows="6" placeholder="Rédigez votre message..." required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit">Envoyer</button>
+          <button type="reset" class="secondary">Effacer</button>
+        </div>
+      </form>
+
+      <div class="contact-infos">
+        <h3>Nos coordonnées</h3>
+        <ul>
+          <li><strong>Adresse:</strong> Quartier somgandé, Ouagadougou, Burkina Faso</li>
+          <li><strong>Téléphone:</strong> +226 57 37 30 16</li>
+          <li><strong>Email:</strong> zougmoreurbain089@gmail.com</li>
+          <li><strong>Horaires:</strong> Lun–Dimanche, 07h00–22h00</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Urban_Tech. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Année automatique
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <a href="https://wa.me/22672301418?text=Bonjour%20!%20Découvrez%20nos%20nouvelles%20offres%20Urban_Tech%20ici%20:%20https://tonsite.com" target="_blank">
+  💬 Recevoir nos offres sur WhatsApp
+</a>
+
+</body>
+</html>

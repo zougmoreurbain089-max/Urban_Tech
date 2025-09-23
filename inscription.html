@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscription | Urban_Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="inscription.css">
+</head>
+<body>
+  <section class="slide">
+    <div class="container">
+      <h1>📋 Inscription à nos formations</h1>
+      <p>Remplissez ce formulaire pour réserver votre place.</p>
+
+      <form action="mailto:contact@tonentreprise.com" method="post" enctype="text/plain">
+        <label for="nom">Nom complet :</label>
+        <input type="text" id="nom" name="Nom" required>
+
+        <label for="email">Adresse email :</label>
+        <input type="email" id="email" name="Email" required>
+
+        <label for="telephone">Téléphone :</label>
+        <input type="tel" id="telephone" name="Téléphone" required>
+
+        <label for="formation">Formation choisie :</label>
+        <select id="formation" name="Formation">
+          <option value="Bureautique">Bureautique</option>
+          <option value="Informatique de base">Informatique de base</option>
+          <option value="Intelligence artificielle">Programmation c</option>
+          <option value="Bureautique">HTML+CSS</option>
+          <option value="Informatique de base">PHP</option>
+          <option value="Intelligence artificielle">My SQL</option>
+        </select>
+
+        <label for="message">Message complémentaire :</label>
+        <textarea id="message" name="Message" rows="5"></textarea>
+
+        <div class="actions">
+          <button type="submit">✅ Envoyer</button>
+          <button type="reset" class="reset">🗑️ Effacer</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
