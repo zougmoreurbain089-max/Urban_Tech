@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaGest - Gestion de Pharmacie</title>
+    <link rel="stylesheet" href="pharmacie.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="logo-icon">&#9883;</span>
+            <h2>PharmaGest</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link active" data-section="dashboard">
+                <span class="nav-icon">&#9632;</span> Tableau de bord
+            </a>
+            <a href="#" class="nav-link" data-section="medicaments">
+                <span class="nav-icon">&#9883;</span> Medicaments
+            </a>
+            <a href="#" class="nav-link" data-section="ventes">
+                <span class="nav-icon">&#128176;</span> Ventes
+            </a>
+            <a href="#" class="nav-link" data-section="fournisseurs">
+                <span class="nav-icon">&#128666;</span> Fournisseurs
+            </a>
+            <a href="#" class="nav-link" data-section="alertes">
+                <span class="nav-icon">&#9888;</span> Alertes
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle">&#9776;</button>
+            <div class="search-bar">
+                <input type="text" id="globalSearch" placeholder="Rechercher un medicament, fournisseur...">
+            </div>
+            <div class="topbar-right">
+                <span class="user-name">Pharmacien</span>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section class="content-section active" id="section-dashboard">
+            <h1>Tableau de bord</h1>
+            <div class="stats-grid">
+                <div class="stat-card stat-blue">
+                    <div class="stat-icon">&#9883;</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalMedicaments">0</span>
+                        <span class="stat-label">Medicaments</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-green">
+                    <div class="stat-icon">&#128176;</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalVentes">0</span>
+                        <span class="stat-label">Ventes aujourd'hui</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-orange">
+                    <div class="stat-icon">&#9888;</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="stockBas">0</span>
+                        <span class="stat-label">Stock bas</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-red">
+                    <div class="stat-icon">&#128197;</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="expireSoon">0</span>
+                        <span class="stat-label">Expire bientot</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>Ventes recentes</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Medicament</th>
+                                <th>Quantite</th>
+                                <th>Prix</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentSalesBody">
+                            <tr><td colspan="4" class="empty-msg">Aucune vente enregistree</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <h3>Alertes de stock</h3>
+                    <div id="dashboardAlerts" class="alert-list">
+                        <p class="empty-msg">Aucune alerte</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medicaments Section -->
+        <section class="content-section" id="section-medicaments">
+            <div class="section-header">
+                <h1>Medicaments</h1>
+                <button class="btn btn-primary" id="btnAddMed">+ Ajouter un medicament</button>
+            </div>
+
+            <div class="filters-bar">
+                <input type="text" id="searchMed" placeholder="Rechercher par nom...">
+                <select id="filterCategory">
+                    <option value="">Toutes les categories</option>
+                    <option value="Analgesique">Analgesique</option>
+                    <option value="Antibiotique">Antibiotique</option>
+                    <option value="Anti-inflammatoire">Anti-inflammatoire</option>
+                    <option value="Antipaludeen">Antipaludeen</option>
+                    <option value="Vitamine">Vitamine</option>
+                    <option value="Sirop">Sirop</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+
+            <table class="data-table" id="medicamentsTable">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Categorie</th>
+                        <th>Prix (FCFA)</th>
+                        <th>Stock</th>
+                        <th>Fournisseur</th>
+                        <th>Expiration</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="medicamentsBody">
+                    <tr><td colspan="7" class="empty-msg">Aucun medicament enregistre</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Ventes Section -->
+        <section class="content-section" id="section-ventes">
+            <div class="section-header">
+                <h1>Ventes</h1>
+                <button class="btn btn-primary" id="btnAddSale">+ Nouvelle vente</button>
+            </div>
+
+            <div class="filters-bar">
+                <input type="date" id="filterDateStart" title="Date debut">
+                <input type="date" id="filterDateEnd" title="Date fin">
+                <button class="btn btn-secondary" id="btnFilterSales">Filtrer</button>
+            </div>
+
+            <div class="sales-summary">
+                <div class="summary-item">
+                    <span class="summary-label">Total des ventes:</span>
+                    <span class="summary-value" id="salesTotalAmount">0 FCFA</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Nombre de ventes:</span>
+                    <span class="summary-value" id="salesCount">0</span>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>N&deg;</th>
+                        <th>Medicament</th>
+                        <th>Quantite</th>
+                        <th>Prix unitaire</th>
+                        <th>Total</th>
+                        <th>Client</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ventesBody">
+                    <tr><td colspan="8" class="empty-msg">Aucune vente enregistree</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Fournisseurs Section -->
+        <section class="content-section" id="section-fournisseurs">
+            <div class="section-header">
+                <h1>Fournisseurs</h1>
+                <button class="btn btn-primary" id="btnAddSupplier">+ Ajouter un fournisseur</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Telephone</th>
+                        <th>Email</th>
+                        <th>Adresse</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="fournisseursBody">
+                    <tr><td colspan="5" class="empty-msg">Aucun fournisseur enregistre</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Alertes Section -->
+        <section class="content-section" id="section-alertes">
+            <h1>Alertes</h1>
+            <div class="alerts-container" id="alertesContainer">
+                <p class="empty-msg">Aucune alerte</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal: Add/Edit Medicament -->
+    <div class="modal-overlay" id="modalMed">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalMedTitle">Ajouter un medicament</h2>
+                <button class="modal-close" id="closeModalMed">&times;</button>
+            </div>
+            <form id="formMed" class="modal-form">
+                <input type="hidden" id="medId">
+                <div class="form-group">
+                    <label for="medNom">Nom du medicament *</label>
+                    <input type="text" id="medNom" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medCategorie">Categorie *</label>
+                        <select id="medCategorie" required>
+                            <option value="">Choisir...</option>
+                            <option value="Analgesique">Analgesique</option>
+                            <option value="Antibiotique">Antibiotique</option>
+                            <option value="Anti-inflammatoire">Anti-inflammatoire</option>
+                            <option value="Antipaludeen">Antipaludeen</option>
+                            <option value="Vitamine">Vitamine</option>
+                            <option value="Sirop">Sirop</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="medPrix">Prix (FCFA) *</label>
+                        <input type="number" id="medPrix" min="0" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medStock">Quantite en stock *</label>
+                        <input type="number" id="medStock" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medStockMin">Stock minimum</label>
+                        <input type="number" id="medStockMin" min="0" value="10">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medFournisseur">Fournisseur</label>
+                        <select id="medFournisseur">
+                            <option value="">Aucun</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="medExpiration">Date d'expiration *</label>
+                        <input type="date" id="medExpiration" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="medDescription">Description</label>
+                    <textarea id="medDescription" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelMed">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: New Sale -->
+    <div class="modal-overlay" id="modalSale">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Nouvelle vente</h2>
+                <button class="modal-close" id="closeModalSale">&times;</button>
+            </div>
+            <form id="formSale" class="modal-form">
+                <div class="form-group">
+                    <label for="saleMed">Medicament *</label>
+                    <select id="saleMed" required>
+                        <option value="">Choisir un medicament...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Stock disponible: <span id="saleStockInfo">-</span></label>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="saleQty">Quantite *</label>
+                        <input type="number" id="saleQty" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salePrixUnit">Prix unitaire (FCFA)</label>
+                        <input type="number" id="salePrixUnit" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Total: <strong id="saleTotal">0 FCFA</strong></label>
+                </div>
+                <div class="form-group">
+                    <label for="saleClient">Nom du client</label>
+                    <input type="text" id="saleClient" placeholder="Client anonyme">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelSale">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Valider la vente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Add Supplier -->
+    <div class="modal-overlay" id="modalSupplier">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalSupplierTitle">Ajouter un fournisseur</h2>
+                <button class="modal-close" id="closeModalSupplier">&times;</button>
+            </div>
+            <form id="formSupplier" class="modal-form">
+                <input type="hidden" id="supplierId">
+                <div class="form-group">
+                    <label for="supplierNom">Nom *</label>
+                    <input type="text" id="supplierNom" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="supplierTel">Telephone *</label>
+                        <input type="tel" id="supplierTel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplierEmail">Email</label>
+                        <input type="email" id="supplierEmail">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="supplierAdresse">Adresse</label>
+                    <input type="text" id="supplierAdresse">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelSupplier">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="pharmacie.js"></script>
+</body>
+</html>
